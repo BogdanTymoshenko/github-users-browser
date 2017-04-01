@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">GHUsersBrowser</string>
+    <string name="common__label__search">Type user name</string>
+</resources>
