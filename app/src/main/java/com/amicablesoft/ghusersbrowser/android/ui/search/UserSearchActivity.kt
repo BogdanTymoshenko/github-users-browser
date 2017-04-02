@@ -14,6 +14,7 @@ import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.View
+import android.widget.TextView
 import com.amicablesoft.ghusersbrowser.android.R
 import com.amicablesoft.ghusersbrowser.android.api.errors.ConnectionError
 import com.amicablesoft.ghusersbrowser.android.api.errors.LimitExceededError
@@ -33,6 +34,7 @@ class UserSearchActivity : AppCompatActivity(), UserSearchView {
     val coordinatorLayout: CoordinatorLayout by bindView(R.id.user_search__coordinator_layout)
     val loadingView: View by bindView(R.id.user_search__loading_view)
     val usersList: RecyclerView by bindView(R.id.user_search__result_list)
+    val emptyLabel: TextView by bindView(R.id.user_search__label__empty)
 
     lateinit var searchView: SearchView
     lateinit var usersAdapter: UsersAdapter
@@ -81,6 +83,8 @@ class UserSearchActivity : AppCompatActivity(), UserSearchView {
 
     override fun showUsers(users: List<UserShort>) {
         usersAdapter.setUsers(users)
+        emptyLabel.setText(R.string.users_search__label__nothing_found)
+        emptyLabel.visibility = if (users.isEmpty()) View.VISIBLE else View.GONE
     }
 
     override fun showUserRepos(user:UserShort, extra: Any) {
@@ -91,6 +95,7 @@ class UserSearchActivity : AppCompatActivity(), UserSearchView {
 
     override fun showLoading() {
         loadingView.visibility = View.VISIBLE
+        emptyLabel.visibility = View.GONE
     }
 
     override fun dismissLoading() {

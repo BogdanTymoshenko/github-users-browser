@@ -36,6 +36,16 @@
                 android:layout_height="match_parent"
                 android:scrollbars="vertical"
                 tools:listitem="@layout/item_user_search"/>
+            <TextView
+                android:id="@+id/user_search__label__empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/users_search__label__search_hint"
+                style="@style/GHUsersBrowser.TextAppearance.Medium"/>
         </FrameLayout>
     </android.support.design.widget.CoordinatorLayout>
 </FrameLayout>

@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">GitHub U</string>
-    <string name="users_search__activity__title">GitHub Users</string>
 
     <string name="common__label__search">Type user name</string>
     <string name="common__label__loading">Loading</string>
@@ -10,6 +9,11 @@
     <string name="common__error__limit_exceeded__try_after">Requests limit exceeded, try again after %1$s</string>
     <string name="common__error__unexpected">Unexpected error</string>
 
+    <string name="users_search__activity__title">GitHub Users</string>
+    <string name="users_search__label__search_hint">To find user on GitHub start typing username, login or email in search field</string>
+    <string name="users_search__label__nothing_found">No user found</string>
+
     <string name="user_repos__label__followers">Followers</string>
     <string name="user_repos__label__following">Following</string>
+
 </resources>
