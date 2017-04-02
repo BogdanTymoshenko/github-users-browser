@@ -7,6 +7,8 @@ interface UserSearchView {
     val queryTextChangeEvents: Observable<SearchQueryEvent>
     fun showUsers(users: List<UserShort>)
 
+    fun showUserRepos(user:UserShort, extra:Any)
+
     fun showLoading()
     fun dismissLoading()
     fun showError(error: Throwable?)

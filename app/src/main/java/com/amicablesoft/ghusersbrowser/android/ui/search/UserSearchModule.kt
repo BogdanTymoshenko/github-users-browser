@@ -1,6 +1,6 @@
 package com.amicablesoft.ghusersbrowser.android.ui.search
 
-import com.amicablesoft.ghusersbrowser.android.repository.UsersRepositoryModule
+import com.amicablesoft.ghusersbrowser.android.repository.users.UsersRepositoryModule
 import dagger.Module
 
 /**

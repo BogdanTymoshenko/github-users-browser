@@ -8,4 +8,7 @@
     <string name="common__error__limit_exceeded__try_later">Requests limit exceeded, try again later</string>
     <string name="common__error__limit_exceeded__try_after">Requests limit exceeded, try again after %1$s</string>
     <string name="common__error__unexpected">Unexpected error</string>
+
+    <string name="user_repos__label__followers">Followers</string>
+    <string name="user_repos__label__following">Following</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.amicablesoft.ghusersbrowser.android.ui.search
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.Snackbar
@@ -17,6 +18,7 @@ import com.amicablesoft.ghusersbrowser.android.R
 import com.amicablesoft.ghusersbrowser.android.api.errors.ConnectionError
 import com.amicablesoft.ghusersbrowser.android.api.errors.LimitExceededError
 import com.amicablesoft.ghusersbrowser.android.model.UserShort
+import com.amicablesoft.ghusersbrowser.android.ui.repos.UserReposActivity
 import com.amicablesoft.ghusersbrowser.android.ui.utils.bindView
 import com.jakewharton.rxbinding.support.v7.widget.queryTextChangeEvents
 import rx.subjects.PublishSubject
@@ -44,8 +46,8 @@ class UserSearchActivity : AppCompatActivity(), UserSearchView {
         usersList.setHasFixedSize(true)
 
         usersAdapter = UsersAdapter(this)
-        usersAdapter.onItemClickListener = {
-            // TODO
+        usersAdapter.onItemClickListener = { pos, avatarImage ->
+            presenter.onUserSelected(atPosition=pos, extra=avatarImage)
         }
         usersList.adapter = usersAdapter
 
@@ -78,6 +80,15 @@ class UserSearchActivity : AppCompatActivity(), UserSearchView {
 
     override fun showUsers(users: List<UserShort>) {
         usersAdapter.setUsers(users)
+    }
+
+    override fun showUserRepos(user:UserShort, extra: Any) {
+        val showUserRepos = Intent(this, UserReposActivity::class.java)
+        showUserRepos.putExtra(UserReposActivity.ARG__USER_LOGIN, user.login)
+
+//        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, extra as View, "user_avatar_image")
+//        ActivityCompat.startActivity(this, showUserRepos, options.toBundle())
+        startActivity(showUserRepos)
     }
 
     override fun showLoading() {

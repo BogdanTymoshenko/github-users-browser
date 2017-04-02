@@ -13,7 +13,7 @@ import com.amicablesoft.ghusersbrowser.android.ui.utils.ImageLoader
 import com.amicablesoft.ghusersbrowser.android.ui.utils.bindView
 
 class UsersAdapter(ctx: Context): RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
-    var onItemClickListener: ((position:Int) -> Unit)? = null
+    var onItemClickListener: ((position:Int, avatarImage:ImageView) -> Unit)? = null
     private val layoutInflater = LayoutInflater.from(ctx)!!
     private val imageLoader = ImageLoader(ctx.applicationContext)
     private val users = ArrayList<UserShort>()
@@ -38,13 +38,13 @@ class UsersAdapter(ctx: Context): RecyclerView.Adapter<UsersAdapter.UserViewHold
         holder.loginLabel.text = user.login
     }
 
-    class UserViewHolder(itemView: View, val onItemClickListener: ((position:Int) -> Unit)?): RecyclerView.ViewHolder(itemView) {
+    class UserViewHolder(itemView: View, val onItemClickListener: ((position:Int, avatarImage:ImageView) -> Unit)?): RecyclerView.ViewHolder(itemView) {
         val avatarImage: ImageView by bindView(R.id.item_user_search__image__avatar)
         val loginLabel: TextView by bindView(R.id.item_user_search__label__login)
 
         init {
             itemView.setOnClickListener {
-                onItemClickListener?.invoke(adapterPosition)
+                onItemClickListener?.invoke(adapterPosition, avatarImage)
             }
         }
     }

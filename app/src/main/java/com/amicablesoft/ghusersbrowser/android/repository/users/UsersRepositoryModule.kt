@@ -1,4 +1,4 @@
-package com.amicablesoft.ghusersbrowser.android.repository
+package com.amicablesoft.ghusersbrowser.android.repository.users
 
 import com.amicablesoft.ghusersbrowser.android.api.ApiFactory
 import com.amicablesoft.ghusersbrowser.android.api.ApiModule
@@ -24,5 +24,5 @@ open class UsersRepositoryModule {
 
     @Provides
     @Singleton
-    open fun repository(impl:UsersRepositoryImpl): UsersRepository = impl
+    open fun repository(impl: UsersRepositoryImpl): UsersRepository = impl
 }

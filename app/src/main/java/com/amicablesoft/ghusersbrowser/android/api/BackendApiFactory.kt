@@ -2,6 +2,7 @@ package com.amicablesoft.ghusersbrowser.android.api
 
 import android.util.Log
 import com.google.gson.GsonBuilder
+import okhttp3.Credentials
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,15 +19,15 @@ class BackendApiFactory : ApiFactory {
     init {
         val httpClientBuilder = OkHttpClient.Builder()
 
-//        httpClientBuilder.addInterceptor { chain ->
-//            val original = chain.request()
-//            val authToken = Credentials.basic(login, token)
-//            val requestBuilder = original.newBuilder()
-//                .addHeader("Authorization", authToken)
-//                .method(original.method(), original.body())
-//            val request = requestBuilder.build()
-//            chain.proceed(request)
-//        }
+        httpClientBuilder.addInterceptor { chain ->
+            val original = chain.request()
+            val authToken = Credentials.basic(login, token)
+            val requestBuilder = original.newBuilder()
+                .addHeader("Authorization", authToken)
+                .method(original.method(), original.body())
+            val request = requestBuilder.build()
+            chain.proceed(request)
+        }
 
         val loggingInterceptor = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message ->
             if (message != null) {

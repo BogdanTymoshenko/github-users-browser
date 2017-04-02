@@ -1,7 +1,7 @@
 package com.amicablesoft.ghusersbrowser.android.ui.search
 
 import com.amicablesoft.ghusersbrowser.android.model.UserShort
-import com.amicablesoft.ghusersbrowser.android.repository.UsersRepository
+import com.amicablesoft.ghusersbrowser.android.repository.users.UsersRepository
 import com.amicablesoft.ghusersbrowser.android.utils.ImmediateSchedulerRule
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.never
@@ -15,9 +15,6 @@ import org.mockito.MockitoAnnotations
 import rx.Observable
 import rx.subjects.PublishSubject
 import javax.inject.Inject
-
-
-
 
 /**
  * Created by bogdan on 4/1/17.

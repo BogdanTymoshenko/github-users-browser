@@ -30,17 +30,6 @@ class ImageLoader(ctx: Context) {
         }
     }
 
-//    fun loadCircleImageAsync(imageUri: Uri?, target: ImageView, width: Int, height: Int) {
-//        if (imageUri != null) {
-//            mPicasso.load(imageUri)
-//                .resize(width, height)
-//                .centerCrop()
-//                .transform(CropCircleTransformation)
-//                .into(target)
-//        } else {
-//            target.setImageDrawable(null)
-//        }
-//    }
 
     private object CropCircleTransformation : Transformation {
         override fun transform(source: Bitmap): Bitmap {

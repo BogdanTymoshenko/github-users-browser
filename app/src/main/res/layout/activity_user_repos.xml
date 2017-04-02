@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_repos__coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.amicablesoft.ghusersbrowser.android.ui.repos.UserReposActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/GHUsersBrowserTheme.NoActionBar.AppBarOverlay">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/user_repos__toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="34dp"
+                android:paddingTop="34dp"
+                android:paddingRight="20dp"
+                app:layout_collapseMode="parallax">
+                <ImageView
+                    android:id="@+id/user_repos__image__avatar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginRight="10dp"
+                    android:transitionName="@string/tn__user_avatar_image"/>
+                <LinearLayout
+                    android:id="@+id/user_repos__container__counters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/user_repos__image__avatar"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/user_repos__label__followers"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="-"
+                            android:lines="1"
+                            android:textAppearance="@style/GHUsersBrowser.TextAppearance.Counter"
+                            tools:text="10"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="@string/user_repos__label__followers"
+                            android:textAppearance="@style/GHUsersBrowser.TextAppearance.Small"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/user_repos__label__following"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="-"
+                            android:lines="1"
+                            android:textAppearance="@style/GHUsersBrowser.TextAppearance.Counter"
+                            tools:text="12"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="@string/user_repos__label__following"
+                            android:textAppearance="@style/GHUsersBrowser.TextAppearance.Small"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/user_repos__label__company_and_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:layout_toRightOf="@id/user_repos__image__avatar"
+                    android:layout_below="@id/user_repos__container__counters"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_horizontal"
+                    android:textAppearance="@style/GHUsersBrowser.TextAppearance.Small"
+                    tools:text="Company, Location"/>
+            </RelativeLayout>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/user_repos__toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/GHUsersBrowserTheme.NoActionBar.PopupOverlay"/>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_user_repos"/>
+
+</android.support.design.widget.CoordinatorLayout>

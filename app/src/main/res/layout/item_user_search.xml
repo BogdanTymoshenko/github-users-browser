@@ -13,7 +13,9 @@
         android:layout_height="62dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_gravity="center_vertical"/>
+        android:layout_gravity="center_vertical"
+        android:transitionName="@string/tn__user_avatar_image"
+        tools:targetApi="lollipop"/>
     <TextView
         android:id="@+id/item_user_search__label__login"
         android:layout_width="0dp"

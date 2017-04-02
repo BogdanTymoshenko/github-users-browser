@@ -1,4 +1,4 @@
-package com.amicablesoft.ghusersbrowser.android.repository
+package com.amicablesoft.ghusersbrowser.android.repository.users
 
 import com.amicablesoft.ghusersbrowser.android.api.SearchApi
 import com.amicablesoft.ghusersbrowser.android.api.UsersApi
@@ -7,12 +7,9 @@ import com.amicablesoft.ghusersbrowser.android.api.errors.ConnectionError
 import com.amicablesoft.ghusersbrowser.android.api.errors.LimitExceededError
 import com.amicablesoft.ghusersbrowser.android.model.UserShort
 import com.amicablesoft.ghusersbrowser.android.utils.ImmediateSchedulerRule
+import com.amicablesoft.ghusersbrowser.android.utils.buildLimitException
 import com.nhaarman.mockito_kotlin.eq
 import com.nhaarman.mockito_kotlin.whenever
-import okhttp3.MediaType
-import okhttp3.Protocol
-import okhttp3.Request
-import okhttp3.ResponseBody
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -20,8 +17,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
-import retrofit2.HttpException
-import retrofit2.Response
 import rx.Observable
 import rx.observers.TestSubscriber
 import java.io.IOException
@@ -30,14 +25,13 @@ import java.util.*
 /**
  * Created by bogdan on 4/1/17.
  */
-class UsersRepositoryTest {
+class UsersSearchRepositoryTest {
     @Rule
     @JvmField
     var immediateSchedulerRule = ImmediateSchedulerRule()
 
     @Mock lateinit var searchApi: SearchApi
-    @Mock lateinit var usersApi: UsersApi
-    lateinit var repository:UsersRepository
+    lateinit var repository: UsersRepository
 
     private val type = "User"
     private val query = "octocat"
@@ -47,17 +41,17 @@ class UsersRepositoryTest {
         MockitoAnnotations.initMocks(this)
         val instance = UsersRepositoryImpl()
         instance.searchApi = searchApi
-        instance.usersApi = usersApi
         repository = instance
     }
 
     @Test fun searchResult_empty() {
-        whenever(searchApi.users(eq(buildQuery), eq(type))).thenReturn(Observable.empty())
+        whenever(searchApi.users(eq(buildQuery), eq(type))).thenReturn(Observable.just(UserSearchResultDto(listOf())))
 
-        repository.search(query)
-            .subscribe({ users ->
-                assertTrue(users.isEmpty())
-            })
+        val subscriber = TestSubscriber<List<UserShort>>()
+        repository.search(query).subscribe(subscriber)
+
+        val resultUsers = subscriber.onNextEvents.first()
+        assertTrue(resultUsers.isEmpty())
     }
 
     @Test fun searchResult_found() {
@@ -68,6 +62,7 @@ class UsersRepositoryTest {
 
         val subscriber = TestSubscriber<List<UserShort>>()
         repository.search(query).subscribe(subscriber)
+
         val resultUsers = subscriber.onNextEvents.first()
         assertEquals(1, resultUsers.size)
         assertEquals(user, resultUsers.first())
@@ -115,19 +110,5 @@ class UsersRepositoryTest {
         repository.search(query).subscribe(subscriber)
 
         subscriber.assertError(Exception::class.java)
-    }
-
-
-    private fun buildLimitException(resetDate:Date?): Throwable {
-        val b = okhttp3.Response.Builder()
-        b.code(403)
-        b.protocol(Protocol.HTTP_1_1)
-        b.request(Request.Builder().url("http://example.com").build())
-        b.addHeader("X-RateLimit-Remaining", "0")
-        if (resetDate != null)
-            b.addHeader("X-RateLimit-Reset", (resetDate.time / 1000L).toString())
-
-        val response = Response.error<Any>(ResponseBody.create(MediaType.parse("application/json; charset=utf-8"), "{}"), b.build())
-        return HttpException(response)
     }
 }

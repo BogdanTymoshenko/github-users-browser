@@ -20,6 +20,11 @@ fun Throwable.mapToServiceError(): Throwable {
         }
     }
 
+    // check not found error
+    if (this is HttpException && this.code() == 404) {
+        return NotFoundError(this)
+    }
+
     // check connection error
     if (this is IOException) {
         return ConnectionError(this)
