@@ -41,6 +41,7 @@ class UserSearchActivity : AppCompatActivity(), UserSearchView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_search)
         setSupportActionBar(findViewById(R.id.user_search__toolbar) as Toolbar)
+        supportActionBar?.setTitle(R.string.users_search__activity__title)
 
         usersList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         usersList.setHasFixedSize(true)

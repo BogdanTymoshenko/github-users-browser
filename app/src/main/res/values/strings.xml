@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">GitHub Users</string>
+    <string name="app_name">GitHub U</string>
+    <string name="users_search__activity__title">GitHub Users</string>
 
     <string name="common__label__search">Type user name</string>
     <string name="common__label__loading">Loading</string>
