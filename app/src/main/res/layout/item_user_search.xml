@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:clickable="true"
+    android:background="@drawable/bg_item_common"
+    android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/item_user_search__image__avatar"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_gravity="center_vertical"/>
+    <TextView
+        android:id="@+id/item_user_search__label__login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        tools:text="github user login"/>
+</LinearLayout>

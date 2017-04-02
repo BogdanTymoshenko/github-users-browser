@@ -1,4 +1,11 @@
 <resources>
-    <string name="app_name">GHUsersBrowser</string>
+    <string name="app_name">GitHub Users</string>
+
     <string name="common__label__search">Type user name</string>
+    <string name="common__label__loading">Loading</string>
+
+    <string name="common__error__connection_problem">Missing network connection. Check connection and try again.</string>
+    <string name="common__error__limit_exceeded__try_later">Requests limit exceeded, try again later</string>
+    <string name="common__error__limit_exceeded__try_after">Requests limit exceeded, try again after %1$s</string>
+    <string name="common__error__unexpected">Unexpected error</string>
 </resources>

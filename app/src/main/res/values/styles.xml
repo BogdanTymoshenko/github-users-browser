@@ -10,4 +10,6 @@
 
     <style name="GHUsersBrowserTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="GHUsersBrowserTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="GHUsersBrowser.TextAppearance.Medium" parent="TextAppearance.AppCompat.Medium"/>
 </resources>
