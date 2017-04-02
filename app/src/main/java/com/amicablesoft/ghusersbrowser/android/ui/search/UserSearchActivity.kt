@@ -86,9 +86,6 @@ class UserSearchActivity : AppCompatActivity(), UserSearchView {
     override fun showUserRepos(user:UserShort, extra: Any) {
         val showUserRepos = Intent(this, UserReposActivity::class.java)
         showUserRepos.putExtra(UserReposActivity.ARG__USER_LOGIN, user.login)
-
-//        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, extra as View, "user_avatar_image")
-//        ActivityCompat.startActivity(this, showUserRepos, options.toBundle())
         startActivity(showUserRepos)
     }
 

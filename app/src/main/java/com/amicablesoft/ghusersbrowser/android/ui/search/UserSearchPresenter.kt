@@ -53,5 +53,3 @@ class UserSearchPresenter @Inject constructor() {
         view.showUserRepos(loadedUsers[atPosition], extra)
     }
 }
-
-data class SearchQueryEvent(val queryText:CharSequence, val submitted:Boolean)
