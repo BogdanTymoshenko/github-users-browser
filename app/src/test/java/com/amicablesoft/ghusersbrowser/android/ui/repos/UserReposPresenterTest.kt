@@ -55,7 +55,8 @@ class UserReposPresenterTest {
         lang = "Kotlin",
         seen = 2,
         stars = 3,
-        fork = 4)
+        fork = 4,
+        htmlUrl = "https://github.com/octocat/oc-repo")
 
     @Before
     fun setUp() {

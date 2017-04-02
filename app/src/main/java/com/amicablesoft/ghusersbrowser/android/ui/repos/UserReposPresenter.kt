@@ -1,6 +1,8 @@
 package com.amicablesoft.ghusersbrowser.android.ui.repos
 
+import com.amicablesoft.ghusersbrowser.android.model.Repo
 import com.amicablesoft.ghusersbrowser.android.model.User
+import com.amicablesoft.ghusersbrowser.android.model.UserShort
 import com.amicablesoft.ghusersbrowser.android.repository.repos.ReposRepository
 import com.amicablesoft.ghusersbrowser.android.repository.users.UsersRepository
 import rx.Subscription
@@ -13,6 +15,7 @@ class UserReposPresenter @Inject constructor() {
     lateinit var view: UserReposView
     lateinit var userLogin: String
 
+    private val loadedRepos = ArrayList<Repo>()
     private val subscriptions = ArrayList<Subscription>()
 
     fun onStart() {
@@ -38,6 +41,8 @@ class UserReposPresenter @Inject constructor() {
             }
             .filter { repos -> repos != null }
             .subscribe({ repos ->
+                loadedRepos.clear()
+                loadedRepos.addAll(repos)
                 view.showRepos(repos)
             })
         subscriptions.add(s2)
@@ -46,6 +51,10 @@ class UserReposPresenter @Inject constructor() {
     fun onStop() {
         subscriptions.forEach { s -> s.unsubscribe() }
         subscriptions.clear()
+    }
+
+    fun onRepoSelected(atPosition: Int) {
+        view.showRepoView(loadedRepos[atPosition])
     }
 
 

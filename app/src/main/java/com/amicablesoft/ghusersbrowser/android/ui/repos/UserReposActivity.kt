@@ -1,5 +1,7 @@
 package com.amicablesoft.ghusersbrowser.android.ui.repos
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.design.widget.CoordinatorLayout
@@ -20,6 +22,7 @@ import com.amicablesoft.ghusersbrowser.android.ui.utils.ImageLoader
 import com.amicablesoft.ghusersbrowser.android.ui.utils.bindView
 import java.text.SimpleDateFormat
 import javax.inject.Inject
+
 
 class UserReposActivity : AppCompatActivity(), UserReposView {
     companion object {
@@ -53,6 +56,9 @@ class UserReposActivity : AppCompatActivity(), UserReposView {
 
         reposList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         reposAdapter = UserReposAdapter(this)
+        reposAdapter.onItemClickListener = { pos ->
+            presenter.onRepoSelected(atPosition = pos)
+        }
         reposList.adapter = reposAdapter
 
         imageLoader = ImageLoader(this.applicationContext)
@@ -106,6 +112,13 @@ class UserReposActivity : AppCompatActivity(), UserReposView {
 
     override fun showRepos(repos: List<Repo>) {
         reposAdapter.setRepos(repos)
+    }
+
+    override fun showRepoView(repo: Repo) {
+        val repoUrl = repo.htmlUrl
+        val showRepo = Intent(Intent.ACTION_VIEW, Uri.parse(repoUrl))
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(showRepo)
     }
 
     override fun showReposLoading() {

@@ -11,6 +11,8 @@ interface UserReposView {
 
     fun showRepos(repos:List<Repo>)
 
+    fun showRepoView(repo: Repo)
+
     fun showReposLoading()
     fun dismissReposLoading()
 

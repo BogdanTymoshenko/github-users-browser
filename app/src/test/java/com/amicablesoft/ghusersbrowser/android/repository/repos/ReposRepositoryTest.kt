@@ -51,7 +51,7 @@ class ReposRepositoryTest {
     }
 
     @Test fun reposResult_found() {
-        val repo = Repo(1, "oc-repo", "Description", "Kotlin", 2, 3, 4)
+        val repo = Repo(1, "oc-repo", "Description", "Kotlin", 2, 3, 4, "https://github.com/octocat/oc-repo")
         whenever(reposApi.repos(eq(userLogin))).thenReturn(Observable.just(listOf(repo)))
 
         val subscriber = TestSubscriber<List<Repo>>()
