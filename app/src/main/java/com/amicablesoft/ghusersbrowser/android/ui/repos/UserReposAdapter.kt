@@ -31,6 +31,7 @@ class UserReposAdapter(ctx: Context): RecyclerView.Adapter<UserReposAdapter.Repo
 
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
         val repo = repos[position]
+        holder.repoName = repo.name
         holder.nameLabel.text = repo.name
         holder.descLabel.text = repo.desc
         holder.descLabel.visibility = if (repo.desc != null) View.VISIBLE else View.GONE
@@ -49,6 +50,9 @@ class UserReposAdapter(ctx: Context): RecyclerView.Adapter<UserReposAdapter.Repo
         val seenLabel: TextView by bindView(R.id.user_repo__label__seen_count)
         val starsLabel: TextView by bindView(R.id.user_repo__label__stars_count)
         val forkLabel: TextView by bindView(R.id.user_repo__label__fork_count)
+
+        // it's for UI testing purposes
+        lateinit var repoName: String
 
         init {
             cardView.setOnClickListener {

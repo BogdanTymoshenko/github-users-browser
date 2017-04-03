@@ -7,6 +7,9 @@ buildscript {
     ext.dagger_version = '2.10'
     ext.junit_version = '4.12'
 
+    ext.espresso_version = '2.2.2'
+    ext.runnerVersion = '0.4.1'
+
     repositories {
         mavenCentral()
         maven { url 'https://maven.fabric.io/public' }
@@ -60,6 +63,7 @@ dependencies {
     compile "com.android.support:design:$support_lib_version"
     compile "com.android.support:recyclerview-v7:$support_lib_version"
     compile "com.android.support:cardview-v7:$support_lib_version"
+    compile "com.android.support.test.espresso:espresso-idling-resource:$espresso_version"
 
     // Rest API retrofit+okhttp
     compile "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -86,4 +90,20 @@ dependencies {
         exclude group: 'org.jetbrains.kotlin'
     })
     kaptTest "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // Android Testing Support Library's runner and rules
+    androidTestCompile "com.android.support.test:runner:$runnerVersion"
+    androidTestCompile "com.android.support.test:rules:$runnerVersion"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile ("com.android.support.test.espresso:espresso-contrib:$espresso_version", {
+        exclude group: 'com.android.support'//, module: 'support-annotations'
+    })
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$espresso_version"
+
+    // Resolve conflicts between main and test APK:
+    androidTestCompile "com.android.support:support-annotations:$support_lib_version"
+    androidTestCompile "com.android.support:support-v4:$support_lib_version"
+    androidTestCompile "com.android.support:recyclerview-v7:$support_lib_version"
 }
