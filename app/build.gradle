@@ -38,10 +38,30 @@ android {
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        debug {
+            storeFile file("../keys/debug.keystore")
+        }
+        release {
+            storeFile file("../keys/release.keystore")
+            storePassword "github-users-browser"
+            keyAlias "github-users-browser"
+            keyPassword "github-users-browser"
+        }
+    }
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -98,7 +118,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     androidTestCompile ("com.android.support.test.espresso:espresso-contrib:$espresso_version", {
-        exclude group: 'com.android.support'//, module: 'support-annotations'
+        exclude group: 'com.android.support'
     })
     androidTestCompile "com.android.support.test.espresso:espresso-intents:$espresso_version"
 
